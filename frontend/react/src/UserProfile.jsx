@@ -1,14 +1,17 @@
 
-const UserProfile = ({age,name,person, ...props})=> {
+
+const UserProfile = ({...rest})=> {
+
 
 
     return(
-        <div>
-            <h1>{name}</h1>
-            <p>{age}</p>
-            <img src={`https://randomuser.me/api/portraits/${person.toLowerCase()}/${age}.jpg`} alt=""/>
-            {props.children}
-        </div>
+
+            <div>
+                <h1 className={`text-red-600 ${rest}`}> Hello world</h1>
+            </div>
+
+
+
     )
 }
-export  default  UserProfile;
+export default UserProfile;

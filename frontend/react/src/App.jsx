@@ -1,44 +1,13 @@
-import UserProfile from "./UserProfile.jsx";
+import {TopBar} from "./components/TopBar.jsx";
 
 
-function App() {
+const App =()=>{
 
 
-    return (
+    return(
 
-        <div>
-            <UserProfile
-                name={"Fahad"}
-                age={26}
-                person={"men"}
-            >
-                <p>
-                    Software Engineer
-                </p>
-            </UserProfile>
+        <TopBar/>
 
-            <UserProfile
-                name={"Farwa"}
-                age={25}
-                person={"women"}
-            >
-            </UserProfile>
-
-            <UserProfile
-                name={"Bhulla"}
-                age={88}
-                person={"men"}
-            >
-            </UserProfile>
-            <UserProfile
-                name={"Rabia"}
-                age={55}
-                person={"women"}
-            >
-            </UserProfile>
-
-        </div>
     )
 }
-
-export default App
+export default App;
