@@ -32,6 +32,7 @@ const SideBar = ({ sideBar, ...rest }) => {
             <ul className="pt-24 uppercase">
                 <GetMenuItems rest="border-b border-gray-600 border-opacity-50" />
             </ul>
+
         </div>
     );
 };

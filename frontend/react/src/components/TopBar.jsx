@@ -32,7 +32,7 @@ const TopBar = () => {
             </ul>
             <div className={'flex '} onClick={()=>{setSideBar(!sideBar)}} >
                 {
-                    !sideBar?<AiOutlineMenu className="size-[24px]" />:<AiOutlineClose/>
+                    !sideBar?<AiOutlineMenu className="size-[24px]" />:<AiOutlineClose className="size-[24px]"/>
                 }
             </div>
            <SideBar sideBar={sideBar}/>
