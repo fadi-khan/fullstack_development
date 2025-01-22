@@ -40,7 +40,7 @@ const SideBar = ({sideBar, ...rest}) => {
 
                 {
                     MenuItems.map((item, i) => (
-                        <div className={`hover:bg-sky-400 hover:rounded flex gap-4 p-4 border-b border-gray-900  `}>
+                        <div className={`hover:bg-[#00df9a] hover:rounded flex gap-4 p-4 border-b border-gray-900  `}>
                             <div className={"flex size-[20px] pt-1 "}>{sideBarIcons[i]}</div>
                             <li key={i}> {item}</li>
                         </div>
