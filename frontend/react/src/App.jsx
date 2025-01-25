@@ -1,4 +1,5 @@
 import {TopBar} from "./components/TopBar.jsx";
+import {Body} from "./components/Body.jsx";
 
 
 const App =()=>{
@@ -6,7 +7,7 @@ const App =()=>{
 
     return(
 
-        <TopBar/>
+       <Body></Body>
 
     )
 }

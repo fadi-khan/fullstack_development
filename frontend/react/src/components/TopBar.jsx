@@ -1,24 +1,7 @@
 import {SideBar} from "./SideBar.jsx";
-import {AiOutlineArrowDown, AiOutlineClose, AiOutlineDown, AiOutlineMenu} from "react-icons/ai";
+import {AiOutlineClose, AiOutlineDown, AiOutlineMenu} from "react-icons/ai";
 import {useState} from "react";
-import {IconBase} from "react-icons";
 
-const MenuItems = [
-    "Home",
-    "Contact",
-    "Settings"
-]
-
-
-const GetMenuItems = ({rest})=>{
-
-    return (
-        MenuItems.map((item, i) => (
-            <li className={`p-4  ${rest}`} key={i}> {item}</li>
-
-        ))
-    )
-}
 
 const TopBar = () => {
 
@@ -27,7 +10,7 @@ const TopBar = () => {
     return (
         <nav className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 text-white m-auto flex items-center  justify-end"}>
 
-            <div className={"md:hidden justify-center items-center  text-center w-1/2"}>
+            <div className={`${sideBar?"hidden":""} md:hidden justify-center items-center  text-center w-1/2`}>
                 <Title/>
             </div>
 
@@ -50,7 +33,6 @@ const TopBar = () => {
             </div>
            <SideBar sideBar={sideBar}/>
 
-
         </nav>
     )
 }
@@ -61,7 +43,7 @@ const Title = ()=>{
         </h1>
     )
 }
-export { TopBar, Title, GetMenuItems };
+export { TopBar, Title};
 
 export const Logo =({rest})=>{
     return (
