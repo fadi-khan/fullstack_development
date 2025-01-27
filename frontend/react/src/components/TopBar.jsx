@@ -24,7 +24,7 @@ const TopBar = () => {
              className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 dark:text-white m-auto flex items-center justify-between  md:justify-end "}>
 
 
-            <div className={`${sideBar ? "hidden" : ""} md:hidden justify-center items-center `}>
+            <div className={` md:hidden justify-center items-center `}>
                 <Title/>
             </div>
 
@@ -51,14 +51,14 @@ const TopBar = () => {
                     }
                 </div>
 
+                <div className={'flex md:hidden '} onClick={toggleSideBar}>
+                    {
+                        !sideBar ? <AiOutlineMenu className="size-[24px]"/> :
+                            <AiOutlineClose className="size-[24px]"/>
+                    }
+                </div>
+            </div>
 
-            </div>
-            <div className={'flex md:hidden '} onClick={toggleSideBar}>
-                {
-                    !sideBar ? <AiOutlineMenu className="size-[24px]"/> :
-                        <AiOutlineClose className="size-[24px]"/>
-                }
-            </div>
 
             <SideBar sideBar={sideBar}/>
 
