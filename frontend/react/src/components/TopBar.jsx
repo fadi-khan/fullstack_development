@@ -20,51 +20,49 @@ const TopBar = () => {
 
     return (
 
-            <nav onClick={()=>showDropDown?setShowDropDown(false):""}
-                className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 dark:text-white m-auto flex items-center justify-end"}>
+        <nav onClick={() => showDropDown ? setShowDropDown(false) : ""}
+             className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 dark:text-white m-auto flex items-center justify-between  md:justify-end "}>
 
 
-                    <div className={`${sideBar ? "hidden" : ""} md:hidden justify-center items-center `}>
-                        <Title/>
-                    </div>
+            <div className={`${sideBar ? "hidden" : ""} md:hidden justify-center items-center `}>
+                <Title/>
+            </div>
 
-                    <div className={"flex gap-2 m-4 justify-center items-center "}>
+            <div className={"flex gap-2 m-4 justify-center items-center "}>
 
 
-                        <div className={`relative mr-4`}>
-                            <div className={"flex gap-2 justify-center items-center"} onClick={toggleDropdown}>
-                                <Logo/>
-                                <ul className={'hidden md:block'}>
-                                    <li>Justin Bieber</li>
-                                    <li className={"font-light"}>Admin</li>
-                                </ul>
-                                <div className={'hidden md:block'}>
-                                    {
-                                        showDropDown ? <AiOutlineUp size={12}/> : <AiOutlineDown size={12}/>
-                                    }
-                                </div>
-
-                            </div>
-
+                <div className={`relative mr-4`}>
+                    <div className={"flex gap-2 justify-center items-center"} onClick={toggleDropdown}>
+                        <Logo/>
+                        <ul className={'hidden md:block'}>
+                            <li>Justin Bieber</li>
+                            <li className={"font-light"}>Admin</li>
+                        </ul>
+                        <div className={'hidden md:block'}>
                             {
-                                showDropDown ? <div className={"mr-24"}><DropDownMenu/></div> : ""
+                                showDropDown ? <AiOutlineUp size={12}/> : <AiOutlineDown size={12}/>
                             }
                         </div>
 
-
                     </div>
 
+                    {
+                        showDropDown ? <div className={"mr-24"}><DropDownMenu/></div> : ""
+                    }
+                </div>
 
-                    <div className={'flex md:hidden '} onClick={toggleSideBar}>
-                        {
-                            !sideBar ? <AiOutlineMenu className="size-[24px]"/> :
-                                <AiOutlineClose className="size-[24px]"/>
-                        }
-                    </div>
 
-                <SideBar sideBar={sideBar}/>
+            </div>
+            <div className={'flex md:hidden '} onClick={toggleSideBar}>
+                {
+                    !sideBar ? <AiOutlineMenu className="size-[24px]"/> :
+                        <AiOutlineClose className="size-[24px]"/>
+                }
+            </div>
 
-            </nav>
+            <SideBar sideBar={sideBar}/>
+
+        </nav>
 
 
     )
