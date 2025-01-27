@@ -15,13 +15,14 @@ export const Body = () => {
     }, []);
 
     return (
-        <div>
+        <div className={"text-white"}>
             <TopBar/>
             {
                 customers.map(customer => (
                     <div key={customer.id} className={"text-white text-center"}>{customer.firstName}</div>
                 ))
             }
+
 
         </div>
     )
