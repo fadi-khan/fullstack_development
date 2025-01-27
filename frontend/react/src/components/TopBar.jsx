@@ -31,9 +31,9 @@ const TopBar = () => {
             <div className={"flex gap-2 m-4 justify-center items-center "}>
 
 
-                <div className={`relative mr-4`}>
-                    <div className={"flex gap-2 justify-center items-center"} onClick={toggleDropdown}>
-                        <Logo/>
+                <div className={`relative mr-4 `}>
+                    <div className={" flex gap-2 justify-center items-center"} onClick={toggleDropdown}>
+                        <Logo rest={`${sideBar?'hidden':''}`}/>
                         <ul className={'hidden md:block'}>
                             <li>Justin Bieber</li>
                             <li className={"font-light"}>Admin</li>
@@ -69,7 +69,7 @@ const TopBar = () => {
 }
 const Title = () => {
     return (
-        <h1 className=" font-bold text-2xl md:text-3xl text-[#00df9a]">
+        <h1 className=" font-bold text-xl md:text-3xl text-[#00df9a]">
             FAHAD'SCODE
 
         </h1>

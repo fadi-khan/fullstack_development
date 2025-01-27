@@ -31,11 +31,11 @@ const SideBar = ({sideBar, ...rest}) => {
     ]
     return (
         <div
-            className={`md:left-0 ease-in-out duration-500 p-4 text-white fixed top-0 w-[60%] md:w-[30%] border-r h-full bg-[#000900] border-gray-900 ${
+            className={`md:left-0 ease-in-out duration-500 p-4 text-white fixed top-0 w-[80%] md:w-[30%] border-r h-full bg-[#000900] border-gray-900 ${
                 sideBar ? "left-0" : "-left-full"
             }`}
         >
-            <div className={"flex gap-2 pl-8 pt-4"}><Logo/><Title/></div>
+            <div className={`flex gap-2 pl-8 pt-4`}><Logo/><Title/></div>
             <ul className="pt-12 pl-8">
 
                 {
