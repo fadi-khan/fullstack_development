@@ -21,7 +21,7 @@ const TopBar = () => {
     return (
 
             <nav onClick={()=>showDropDown?setShowDropDown(false):""}
-                className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 dark:text-white m-auto flex items-center justify-end"}>
+                className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 dark:text-white m-auto flex items-center justify-center"}>
 
                 <div className={`${sideBar ? "hidden" : ""} md:hidden justify-center items-center `}>
                     <Title/>
