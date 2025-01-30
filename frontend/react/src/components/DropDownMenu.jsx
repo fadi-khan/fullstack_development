@@ -1,12 +1,12 @@
 
-const DropDownMenu = ()=>{
+const DropDownMenu = ({setDropDown})=>{
     return (
-        <div className={"absolute min-w-[140px] text-center border border-[#00df9a] rounded mt-4 bg-[#000300] "}>
-            <ul className={" font-light "}>
-                <li className={"block  border-b border-[#00df9a] p-2 hover:bg-[#00df9a] "}>Profile</li>
-                <li className={"block p-2 hover:bg-[#00df9a] "}>Logout</li>
+        <nav className={" text-center border border-green-700  rounded  bg-[#000300]    "}>
+            <ul className={" font-light "} onClick={()=>setDropDown(false)}>
+                <li className={"p-2  border border-green-700 h-12 hover:bg-[#00df9a] "}>Profile</li>
+                <li className={"p-2 border border-green-700 h-12 hover:bg-[#00df9a] "}>Logout</li>
             </ul>
-        </div>
+        </nav>
     )
 }
 

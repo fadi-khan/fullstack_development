@@ -1,91 +1,62 @@
-import {SideBar} from "./SideBar.jsx";
-import {AiOutlineClose, AiOutlineDown, AiOutlineMenu, AiOutlineUp} from "react-icons/ai";
-import {useState} from "react";
-import {DropDownMenu} from "./DropDownMenu.jsx";
+import {AiOutlineMenu} from "react-icons/ai";
+import {ProfileButton} from "./ProfileButton.jsx";
+import {Logo} from "./Logo.jsx";
 
 
-const TopBar = () => {
+// const TopBar = () => {
+//     const [sideBar, setSideBar] = useState(false);
+//
+//     return (
+//         <div className="h-screen flex flex-col dark:text-white">
+//             {/* Navigation Bar */}
+//             <nav className="border-b flex w-full justify-between px-8 items-center h-[100px]">
+//                 {/* Menu Button (Only visible on mobile) */}
+//                 <button onClick={() => setSideBar(true)} className="md:hidden text-2xl">
+//                     <AiOutlineMenu />
+//                 </button>
+//
+//                 {/* Profile Image */}
+//                 <div className="md:flex hidden">
+//                     <img
+//                         className="md:w-[50px] w-[40px] md:h-[50px] h-[40px] drop-shadow shadow-xl ring-2 rounded-full p-2 shadow-green-600 bg-[#000300]"
+//                         src={'logo2.png'}
+//                         alt="Bordered avatar"
+//                     />
+//                 </div>
+//                 <ProfileButton />
+//             </nav>
+//
+//             {/* Main Content */}
+//             <div className="flex flex-1">
+//                 {/* Sidebar */}
+//                 <SideBar toggleSidebar={sideBar} setToggleSidebar={setSideBar} />
+//
+//                 {/* Main Section */}
+//                 <main className="flex-1 bg-gray-100 p-6 overflow-y-auto">
+//                     <h1 className="text-red-600">Hello My Name Is Fahad</h1>
+//                 </main>
+//             </div>
+//         </div>
+//     );
+// };
 
 
-    const [sideBar,setSideBar] = useState(false)
-    const [showDropDown,setShowDropDown] = useState(false)
-
-    const toggleSideBar = () => {
-        setSideBar(!sideBar);
-    };
-
-    const toggleDropdown = () => {
-        setShowDropDown(!showDropDown);
-    };
-
-    return (
-
-        <nav onClick={() => showDropDown ? setShowDropDown(false) : ""}
-             className={"max-w-[1240px] border-b border-t border-gray-900  md:max-w-full h-24 px-4 dark:text-white m-auto flex items-center justify-between  md:justify-end "}>
+const TopBar = ({setToggleSidebar}) => {
+    return (<nav className="border-b border-green-700 border-opacity-50 flex w-full justify-between pr-8 pl-2 items-center h-[100px]">
+        {/* Mobile Menu Button */}
+        <button onClick={() => setToggleSidebar(true)} className="md:hidden text-2xl hover:border p-1  border-green-700 rounded">
+            <AiOutlineMenu color={"lightgray"} />
+        </button>
+        <div className={"md:flex hidden"}><Logo/></div>
+        <div className={"md:hidden "}><Logo/></div>
 
 
-            <div className={` md:hidden justify-center items-center `}>
-                <Title/>
-            </div>
+        <ProfileButton/>
 
-            <div className={"flex gap-2 m-4 justify-center items-center "}>
-
-
-                <div className={`relative mr-4 `}>
-                    <div className={" flex gap-2 justify-center items-center"} onClick={toggleDropdown}>
-                        <Logo rest={`${sideBar?'hidden':''}`}/>
-                        <ul className={'hidden md:block'}>
-                            <li>Justin Bieber</li>
-                            <li className={"font-light"}>Admin</li>
-                        </ul>
-                        <div className={'hidden md:block'}>
-                            {
-                                showDropDown ? <AiOutlineUp size={12}/> : <AiOutlineDown size={12}/>
-                            }
-                        </div>
-
-                    </div>
-
-                    {
-                        showDropDown ? <div className={"mr-24"}><DropDownMenu/></div> : ""
-                    }
-                </div>
-
-                <div className={'flex md:hidden '} onClick={toggleSideBar}>
-                    {
-                        !sideBar ? <AiOutlineMenu className="size-[24px]"/> :
-                            <AiOutlineClose className="size-[24px]"/>
-                    }
-                </div>
-            </div>
+    </nav>);
+};
 
 
-            <SideBar sideBar={sideBar}/>
-
-        </nav>
+export {TopBar};
 
 
-    )
-}
-const Title = () => {
-    return (
-        <h1 className=" font-bold text-xl md:text-3xl text-[#00df9a]">
-            FAHAD'SCODE
-
-        </h1>
-    )
-}
-
-
-export {TopBar, Title};
-
-
-export const Logo = ({rest}) => {
-    return (
-
-        <img className={`${rest} w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-green-800`}
-             src={"https://avatars.githubusercontent.com/u/110169794?v=4"}
-             alt="Bordered avatar"/>
-
-    )
-}

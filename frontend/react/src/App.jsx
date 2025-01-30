@@ -1,14 +1,16 @@
-import {TopBar} from "./components/TopBar.jsx";
-import {Body} from "./components/Body.jsx";
+import Layout from "./components/Layout.jsx";
 
 
-const App =()=>{
+const App = () => {
+    return (
 
 
-    return(
+           <Layout/>
 
-       <Body></Body>
+
 
     )
 }
+
+
 export default App;
