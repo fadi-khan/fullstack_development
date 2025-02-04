@@ -3,5 +3,17 @@
 @tailwind utilities;
 
 body{
-    background: #000300
+    background: #000300;
+    user-select: none;
+
+}
+#formLabel{
+    margin-bottom: 4px;
+    font-weight: bold;
+
+}
+#formInput{
+    margin-bottom: 16px;
+    padding: 12px;
+
 }

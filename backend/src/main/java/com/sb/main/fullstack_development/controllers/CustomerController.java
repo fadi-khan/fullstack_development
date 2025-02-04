@@ -22,10 +22,6 @@ public class CustomerController {
         this.jdbcDao = jdbcDao;
     }
 
-    @GetMapping("/")
-    String home (){
-        return "index.html";
-    }
 
 
     @GetMapping

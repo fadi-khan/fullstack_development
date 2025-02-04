@@ -1,40 +1,30 @@
 
-import {useEffect, useState} from "react";
-import {getCustomers} from "../services/client.jsx";
-import LoadingSpinner from "./LoadingSpinner.jsx";
+import { useState} from "react";
+
+import {Table} from "./Table.jsx";
+import {NewCustomer} from "./NewCustomer.jsx";
 
 
 
 
 export const Body = () => {
 
-    const [customers, setCustomers] = useState([]);
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
+    const [formBar,setFormBar] = useState(false )
 
-         setLoading(true);
-
-           getCustomers().then(response => {
-               setCustomers(response.data);
-
-           }).catch((error) => {
-               console.log(error);
-           }).finally(
-                () => setLoading(false),
-           )
-
-    }, []
-    );
-
+    const toggleFormBar = () => {
+        setFormBar(true)
+    }
     return (
-        <div className={"flex-1  p-6 overflow-y-auto "}>
+        <div className={`flex-1  p-6 overflow-auto `}>
 
-            {
-                !loading ? customers.map(customer => (
-                <main key={customer.id} className={"  text-white overflow-y-auto"}>{customer.firstName}</main>))
-                :<LoadingSpinner/>
-
-            }
+            <button
+                className={"font-bold py-2.5 bg-green-700 px-5 rounded mb-12 hover:opacity-80"}
+                onClick={toggleFormBar}
+            >
+                Add new customer
+            </button>
+            {formBar? <NewCustomer formBar={formBar} setFormBar={setFormBar} />:""}
+            <Table/>
 
 
 
@@ -42,3 +32,4 @@ export const Body = () => {
 
     )
 }
+

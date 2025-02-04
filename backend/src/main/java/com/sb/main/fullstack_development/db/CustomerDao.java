@@ -35,6 +35,10 @@ public class CustomerDao implements CustomerService{
 
     @Override
     public boolean saveCustomer(Customer customer) {
+
+
+        customer.setFirstName(customer.getFirstName().substring(0,1).toUpperCase()+customer.getFirstName().substring(1));
+        customer.setLastName(customer.getLastName().toUpperCase());
         customerRepository.save(customer);
 
         return customerRepository.existsCustomerByCustomerId(customer.getCustomerId());
@@ -48,8 +52,8 @@ public class CustomerDao implements CustomerService{
         if (status) {
             Customer customer1 = customerRepository.findCustomerByEmail(customer.getEmail());
 
-            customer1.setFirstName(customer.getFirstName());
-            customer1.setLastName(customer.getLastName());
+            customer1.setFirstName(capitalize(customer1.getFirstName()));
+            customer1.setLastName(capitalize( customer.getLastName()));
             customer1.setAge(customer.getAge());
             customer1.setPhone(customer.getPhone());
             customerRepository.save(customer1);
@@ -71,5 +75,8 @@ public class CustomerDao implements CustomerService{
         return status>0;
     }
 
+    public String capitalize(String input) {
+        return input.substring(0,1).toUpperCase()+ input.substring(1);
+    }
 
 }

@@ -23,6 +23,7 @@ public class Customer {
     private String email;
     @Column(nullable = false)
     private String phone;
+
     @Column(nullable = false)
     private Integer age;
 

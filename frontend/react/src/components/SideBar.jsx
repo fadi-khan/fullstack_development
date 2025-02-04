@@ -1,59 +1,6 @@
 import {AiOutlineClose} from "react-icons/ai";
 
 
-// const SideBar = ({toggleSidebar, setToggleSidebar}) => {
-//
-//     const MenuItems = [
-//         "Home",
-//         "Contact",
-//         "Settings"
-//     ]
-//
-//
-//
-//
-//     return (
-//         <div
-//             className={`${
-//                 toggleSidebar ? "left-0" : "-left-full"
-//             } fixed md:relative top-0  ease-in-out duration-500 p-4
-//                 text-white  md:w-[30%] w-[100%]
-//                 border-r h-full  bg-black
-//                 border-gray-900 z-50 hidden md:block md:left-0` }>
-//
-//
-//             <div className="flex justify-between items-center mb-4">
-//                 <h2 className="text-xl font-bold">Menu</h2>
-//                 <button onClick={() => setToggleSidebar(false)} className="md:hidden text-white text-2xl">
-//                     <AiOutlineClose/>
-//                 </button>
-//             </div>
-//             <div>
-//                 <ul className="pt-12 pl-8 ">
-//
-//                     {
-//                         MenuItems.map((item, i) => (
-//                             <div className={`hover:bg-[#00df9a] hover:rounded `   }>
-//                                 <div className={"size-[20px] pt-1 "}>{sideBarIcons[i]}</div>
-//                                 <li key={i}> {item}</li>
-//                             </div>
-//                         ))
-//
-//                     }
-//                 </ul>
-//
-//
-//             </div>
-//
-//
-//         </div>
-//     )
-//
-//
-//
-//
-// };
-
 const SideBar = ({ toggleSidebar, setToggleSidebar }) => {
     const MenuItems = ["Home", "Contact", "Settings"];
 

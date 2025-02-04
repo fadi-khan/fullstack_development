@@ -24,6 +24,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         allowedOrigins.forEach(corsRegistration::allowedOrigins);
         allowedMethods.forEach(corsRegistration::allowedMethods);
+        corsRegistration.allowedHeaders("*");
+
 
     }
 
