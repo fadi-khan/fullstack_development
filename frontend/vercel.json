@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/:path*"
+    }
+  ]
+}
