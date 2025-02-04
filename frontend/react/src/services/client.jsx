@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const apiUrl = "http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers";
+const apiUrl = "/api";
 export const getCustomers =async ()=>{
 
 
     try {
-       return await axios.get(apiUrl)
+       return await axios.get(`${apiUrl}/v1/customers`)
    }
    catch (error) {
        console.log(error);
@@ -15,7 +15,7 @@ export const getCustomers =async ()=>{
 
 export const updateCustomer =async (customer)=>{
     try {
-        return (await axios.post(apiUrl,customer))
+        return (await axios.post(`${apiUrl}/v1/customers`,customer))
     }
     catch (error) {
         throw error;
