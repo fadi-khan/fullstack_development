@@ -5,7 +5,7 @@ export const getCustomers =async ()=>{
 
 
     try {
-       return await axios.get(`${apiUrl}/v1/customers`)
+       return await axios.get(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/v1/customers`)
    }
    catch (error) {
        console.log(error);
@@ -15,7 +15,7 @@ export const getCustomers =async ()=>{
 
 export const updateCustomer =async (customer)=>{
     try {
-        return (await axios.post(`${apiUrl}/v1/customers`,customer))
+        return (await axios.post(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/v1/customers`,customer))
     }
     catch (error) {
         throw error;
