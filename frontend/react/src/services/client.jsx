@@ -5,7 +5,7 @@ export const getCustomers =async ()=>{
 
 
     try {
-       return await axios.get(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/v1/customers`)
+       return await axios.get(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers`)
    }
    catch (error) {
        console.log(error);
@@ -15,7 +15,7 @@ export const getCustomers =async ()=>{
 
 export const updateCustomer =async (customer)=>{
     try {
-        return (await axios.post(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/v1/customers`,customer))
+        return (await axios.post(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers`,customer))
     }
     catch (error) {
         throw error;
@@ -23,7 +23,7 @@ export const updateCustomer =async (customer)=>{
 }
 export const deleteCustomer =async (id)=>{
     try {
-        const response = await axios.delete(`${import.meta.env.NEXT_PUBLIC_API_URL}/${id}`);
+        const response = await axios.delete(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers/${id}`);
         console.log('Customer deleted successfully', response.data); // Optionally log the response
         return response.data; //const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}`);
 

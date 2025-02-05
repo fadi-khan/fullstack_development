@@ -91,6 +91,8 @@ export const Table = () => {
                 ))}
                 </tbody>
             </table>
+
+
         </div>
     );
 };

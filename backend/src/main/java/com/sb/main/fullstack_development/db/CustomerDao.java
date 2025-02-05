@@ -37,8 +37,9 @@ public class CustomerDao implements CustomerService{
     public boolean saveCustomer(Customer customer) {
 
 
-        customer.setFirstName(customer.getFirstName().substring(0,1).toUpperCase()+customer.getFirstName().substring(1));
-        customer.setLastName(customer.getLastName().toUpperCase());
+        customer.setFirstName(capitalize(customer.getFirstName()));
+        customer.setLastName(capitalize(customer.getLastName()));
+        customer.setEmail(customer.getEmail().toLowerCase());
         customerRepository.save(customer);
 
         return customerRepository.existsCustomerByCustomerId(customer.getCustomerId());
