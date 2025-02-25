@@ -27,14 +27,24 @@ public class Customer {
     @Column(nullable = false)
     private Integer age;
 
+   @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-    public Customer( String firstName, String lastName, String email, String phone, Integer age) {
+
+
+
+
+    public Customer( String firstName, String lastName, String email, String phone, Integer age, Gender gender) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.age = age;
+        this.gender = gender;
+
     }
+
+
 
 }

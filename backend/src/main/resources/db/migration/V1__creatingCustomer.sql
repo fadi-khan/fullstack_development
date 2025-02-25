@@ -5,4 +5,5 @@ create table customers (
     age int not null ,
     email varchar(255) unique not null,
     phone varchar(255) not null
+
 )

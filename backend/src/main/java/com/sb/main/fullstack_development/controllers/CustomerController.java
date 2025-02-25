@@ -8,6 +8,7 @@ import com.sb.main.fullstack_development.exceptions.DuplicateCustomerException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/customers")
@@ -43,10 +44,14 @@ public class CustomerController {
     @PostMapping
     void addCustomer(@RequestBody Customer customer) {
 
-        if (!db.saveCustomer(customer)) {
-            throw new DuplicateCustomerException("customer already exists");
+        try {
+            db.saveCustomer(customer);
         }
-        db.saveCustomer(customer);
+        catch (DuplicateCustomerException e) {
+            throw new DuplicateCustomerException("duplicate customer found");
+        }
+
+
 
     }
     @DeleteMapping("{id}")
@@ -56,9 +61,6 @@ public class CustomerController {
 
     @PutMapping("")
     void updateCustomer( @RequestBody Customer customer) {
-
-
-
         jdbcDao.updateCustomer(customer);
     }
 

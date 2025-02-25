@@ -1,6 +1,7 @@
 package com.sb.main.fullstack_development.db;
 
 import com.sb.main.fullstack_development.entities.Customer;
+import com.sb.main.fullstack_development.exceptions.DuplicateCustomerException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,17 +34,21 @@ public class CustomerDao implements CustomerService{
         return customerRepository.findById(id);
     }
 
-    @Override
-    public boolean saveCustomer(Customer customer) {
 
-
-        customer.setFirstName(capitalize(customer.getFirstName()));
-        customer.setLastName(capitalize(customer.getLastName()));
-        customer.setEmail(customer.getEmail().toLowerCase());
-        customerRepository.save(customer);
-
-        return customerRepository.existsCustomerByCustomerId(customer.getCustomerId());
+@Override
+public boolean saveCustomer(Customer customer) {
+    // Check for duplicate email
+    if (customerRepository.existsCustomerByEmail(customer.getEmail())) {
+        throw new DuplicateCustomerException("Duplicate customer with email: " + customer.getEmail());
     }
+
+    customer.setFirstName(capitalize(customer.getFirstName()));
+    customer.setLastName(capitalize(customer.getLastName()));
+    customer.setEmail(customer.getEmail().toLowerCase());
+    customerRepository.save(customer);
+
+    return customerRepository.existsCustomerByCustomerId(customer.getCustomerId());
+}
 
     @Override
     public boolean updateCustomer(Customer customer) {
@@ -77,7 +82,8 @@ public class CustomerDao implements CustomerService{
     }
 
     public String capitalize(String input) {
-        return input.substring(0,1).toUpperCase()+ input.substring(1);
+
+        return input.substring(0,1).toUpperCase()+ input.substring(1).toLowerCase();
     }
 
 }

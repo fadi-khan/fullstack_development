@@ -13,14 +13,28 @@ export const getCustomers =async ()=>{
 }
 
 
+export const saveCustomer =async (customer)=>{
+    try {
+        return (
+            await axios.post(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers`,customer)
+        )
+    }
+    catch (error) {
+        console.log(error)
+        throw error;
+
+
+    }
+}
 export const updateCustomer =async (customer)=>{
     try {
-        return (await axios.post(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers`,customer))
+        return (await axios.put(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers`,customer))
     }
     catch (error) {
         throw error;
     }
 }
+
 export const deleteCustomer =async (id)=>{
     try {
         const response = await axios.delete(`http://customerapi.us-west-1.elasticbeanstalk.com:8080/api/v1/customers/${id}`);

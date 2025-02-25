@@ -2,6 +2,7 @@ package com.sb.main.fullstack_development.db;
 
 import com.sb.main.fullstack_development.AbstractTestContainers;
 import com.sb.main.fullstack_development.entities.Customer;
+import com.sb.main.fullstack_development.entities.Gender;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,8 @@ class CustomerRepositoryTest extends AbstractTestContainers {
      var email = "amigos.ali@gmail.com";
      Customer customer = new Customer(
              "ali","muhammad",
-             email ,"01212111",55
+             email ,"01212111",55,
+             Gender.FEMALE
      );
      underTest.save(customer);
 
@@ -49,7 +51,7 @@ class CustomerRepositoryTest extends AbstractTestContainers {
      var email = "amigos.ali@gmail.com";
      Customer customer = new Customer(
              "ali","muhammad",
-             email ,"01212111",55
+             email ,"01212111",55,Gender.MALE
      );
      underTest.save(customer);
 

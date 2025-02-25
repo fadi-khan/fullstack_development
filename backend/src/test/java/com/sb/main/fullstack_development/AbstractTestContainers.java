@@ -32,7 +32,7 @@ public abstract class AbstractTestContainers {
     protected static final MySQLContainer<?> mysqlContainer
             = new MySQLContainer<>("mysql:8.0")
             .withDatabaseName("fahadkhan-dao-unit-test")
-            .withUsername("fahadkhan")
+            .withUsername("root")
             .withPassword("123456");
 
 

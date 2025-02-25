@@ -41,8 +41,9 @@ import {Logo} from "./Logo.jsx";
 // };
 
 
-const TopBar = ({setToggleSidebar}) => {
-    return (<nav className="border-b border-green-700 border-opacity-50 flex w-full justify-between pr-4 pl-2 items-center h-[100px]">
+const TopBar = ({formBar, setToggleSidebar }) => {
+    return (
+    <nav className={` ${!formBar ? "border-b ":""} border-green-700 shadow-lg shadow-green-950 flex w-full justify-between pr-4 pl-2 items-center h-[100px]`}>
         {/* Mobile Menu Button */}
         <button onClick={() => setToggleSidebar(true)} className="md:hidden text-2xl hover:border p-1  border-green-700 rounded">
             <AiOutlineMenu color={"lightgray"} />

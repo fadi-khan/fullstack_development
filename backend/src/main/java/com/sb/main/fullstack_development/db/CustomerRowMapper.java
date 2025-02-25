@@ -1,6 +1,7 @@
 package com.sb.main.fullstack_development.db;
 
 import com.sb.main.fullstack_development.entities.Customer;
+import com.sb.main.fullstack_development.entities.Gender;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,9 @@ public class CustomerRowMapper implements RowMapper<Customer> {
                 rs.getString("last_name"),
                 rs.getString("email"),
                 rs.getString("phone"),
-                rs.getInt("age"));
+                rs.getInt("age"),
+                Gender.valueOf(rs.getString("gender"))
+        );
+
     }
 }

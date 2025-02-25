@@ -1,33 +1,33 @@
 import {useState} from "react";
 import {updateCustomer} from "../services/client.jsx";
-import {AiOutlineClose} from "react-icons/ai";
-import {Link} from "react-router-dom";
+import {AiOutlineClose, AiOutlineDown} from "react-icons/ai";
 
-export const NewCustomer = ({formBar, setFormBar}) => {
 
-    const [customer, setCustomer] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        age: 0
-    });
+export const UpdateForm = ({currentCustomer, setCurrentCustomer, updateFormBar, setUpdateFormBar, updateCustomersList}) => {
+
+
+    // check if error occurred or not
     const [error, setError] = useState(false);
+
+    // to set the message based on response
     const [message, setMessage] = useState("")
+
+    // to handle the change in the text field
     const handleChange = (e) => {
 
-        setCustomer({...customer, [e.target.name]: e.target.value});
+        setCurrentCustomer({...currentCustomer, [e.target.name]: e.target.value});
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             setError(false);
-            await updateCustomer(customer)
-            setMessage("Customer Added Successfully !");
+            await updateCustomer(currentCustomer)
+            setMessage("Customer's Information Updated Successfully !");
         } catch (error) {
             setError(true);
             console.log(error);
-            setMessage(`Customer with email ${customer.email} already exists`);
+            setMessage(`Customer with the email already exists`);
         }
     }
 
@@ -37,11 +37,11 @@ export const NewCustomer = ({formBar, setFormBar}) => {
         <>
             <div>
                 {
-                    formBar && (
+                    updateFormBar && (
                         <div
-                            onClick={()=>{
-                                setFormBar(false);
-                                location.reload();
+                            onClick={() => {
+                                setUpdateFormBar(false);
+                                updateCustomersList();
                             }}
                             className={"fixed inset-0 z-50 bg-black opacity-50"}>
 
@@ -51,37 +51,36 @@ export const NewCustomer = ({formBar, setFormBar}) => {
             </div>
 
 
-            <div className={` fixed top-0  p-4  md:w-[60%] w-[80%] border h-full bg-black border-green-700 border-opacity-30 z-50 ease-in-out duration-500 transition-all
-                      ${formBar ? "right-0" : "-right-full"} `}>
+            <div className={` overflow-auto fixed top-0 border-l rounded-l-2xl border-green-950 p-4  md:w-[60%] w-[80%]  h-full bg-black z-50 ease-in-out duration-500 transition-all
+                      ${updateFormBar ? "right-0" : "-right-full"} `}>
 
                 <div className={"flex justify-between mb-12"}>
                     <label className={"text-3xl font-bold text-green-800"}>Add Customer</label>
 
-                        <AiOutlineClose
-                            className={"hover:border hover:border-green-800 "}
-                            size={20}
-                            onClick={
-                            ()=>{
-                                setFormBar(!formBar);
-                                location.reload()} }
-                        />
-
-
+                    <AiOutlineClose
+                        className={"hover:border hover:border-green-800 "}
+                        size={20}
+                        onClick={
+                            () => {
+                                setUpdateFormBar(false);
+                                updateCustomersList();
+                            }}
+                    />
 
 
                 </div>
                 <h2 className={`${error ? "text-red-600" : "text-green-600"} text-center my-4`}> {message}</h2>
 
-                <form onSubmit={handleSubmit} className="flex flex-col max-w-[60%] m-auto">
+                <form onSubmit={handleSubmit} className=" gap-y-6  flex flex-col max-w-[60%] m-auto">
 
 
                     <label id={"formLabel"}>First Name</label>
                     <input
                         id={"formInput"}
                         type={"text"}
-                        className={"text-black  rounded  focus:outline-green-700  "}
+                        className={" rounded   "}
                         name={"firstName"}
-                        value={customer.firstName}
+                        value={currentCustomer.firstName}
                         onChange={handleChange}
                         required={true}
                         placeholder={"First Name"}
@@ -93,9 +92,9 @@ export const NewCustomer = ({formBar, setFormBar}) => {
                     <input
                         id={"formInput"}
                         type={"text"}
-                        className={"text-black  rounded  focus:outline-green-700  "}
+                        className={"rounded  "}
                         name={"lastName"}
-                        value={customer.lastName}
+                        value={currentCustomer.lastName}
                         onChange={handleChange}
                         required={true}
                         placeholder={"Last Name "}
@@ -105,9 +104,9 @@ export const NewCustomer = ({formBar, setFormBar}) => {
                     <input
                         id={"formInput"}
                         type={"email"}
-                        className={"text-black  rounded  focus:outline-green-700  "}
+                        className={"rounded   "}
                         name={"email"}
-                        value={customer.email}
+                        value={currentCustomer.email}
                         onChange={handleChange}
                         required={true}
                         placeholder={"Email"}
@@ -117,9 +116,9 @@ export const NewCustomer = ({formBar, setFormBar}) => {
                     <input
                         id={"formInput"}
                         type={"text"}
-                        className={"text-black  rounded  focus:outline-green-700  "}
+                        className={"rounded   "}
                         name={"phone"}
-                        value={customer.phone}
+                        value={currentCustomer.phone}
                         onChange={handleChange}
                         required={true}
                         placeholder={"Phone"}
@@ -129,22 +128,42 @@ export const NewCustomer = ({formBar, setFormBar}) => {
                     <input
                         id={"formInput"}
                         type={"text"}
-                        className={"text-black  rounded  focus:outline-green-700  "}
+                        className={" rounded"}
                         name={"age"}
-                        value={customer.age}
+                        value={currentCustomer.age}
                         onChange={handleChange}
                         required={true}
                         placeholder={"Age"}
                     />
+                    <label id={""}>Gender</label>
 
-                    <button type="submit" className="bg-green-600 text-white px-4 py-3 rounded font-bold text-lg my-4">
+                    <select
+
+                        className="dropdown-container bg-[#000900] border py-2 h-12 rounded pr-4"
+                        name="gender"
+                        value={currentCustomer.gender}
+                        onChange={handleChange}
+                        required={true}
+                    >
+
+                        <option value="">Select Gender</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                        <option value="OTHER">Other</option>
+
+
+                    </select>
+
+                    <button type="submit"
+                            className="bg-green-600 text-white px-4 py-3 rounded font-bold text-lg my-4">
                         Save
                     </button>
 
                 </form>
 
-
             </div>
+
+
         </>
 
 

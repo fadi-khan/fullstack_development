@@ -17,18 +17,18 @@ services:
     networks:
       - app-network
 #      configuring the db while using not locally but from an image
-  fahadkhan-api:
-    container_name: fahadkhan-api
-    image: fadialfa/fahadkhan-api
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fullstack_development
-    ports:
-      - "8088:8080"
-    networks:
-      - app-network
-    depends_on:
-      - mysql
-    restart: unless-stopped
+#  fahadkhan-api:
+#    container_name: fahadkhan-api
+#    image: fadialfa/fahadkhan-api
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fullstack_development
+#    ports:
+#      - "8088:8080"
+#    networks:
+#      - app-network
+#    depends_on:
+#      - mysql
+#    restart: unless-stopped
 
 
 networks:

@@ -52,11 +52,20 @@ public class CustomerJdbcDao implements CustomerService {
     }
     @Override
     public boolean updateCustomer(Customer customer) {
-       var sqlScript = "UPDATE customers SET first_name=?,last_name=?,email=?,phone=?,age=? WHERE customer_id=? OR email=? ";
-      var  status = jdbcTemplate.update(
-                sqlScript,customer.getFirstName(),
-                customer.getLastName(),customer.getEmail(),
-                customer.getPhone(),customer.getAge(),customer.getCustomerId(),customer.getEmail());
+        System.out.println(customer.getGender());
+       var sqlScript = "UPDATE customers SET first_name=?,last_name=?,email=?,phone=?,age=?,gender=? WHERE customer_id=? OR email=? ";
+
+       var  status = jdbcTemplate.update(
+              sqlScript,
+              customer.getFirstName(),
+              customer.getLastName(),
+              customer.getEmail(),
+              customer.getPhone(),
+              customer.getAge(),
+              customer.getGender().name(),
+              customer.getCustomerId(),
+              customer.getEmail());
+
 
         return status>0;
     }

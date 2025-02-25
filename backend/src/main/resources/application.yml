@@ -4,10 +4,11 @@ spring:
   application:
     name: fullstack_development
   datasource:
-    username: fahadkhan
-    password: 123456
-    url: jdbc:mysql://localhost:3306/fullstack_development
-#    jdbc:mysql://database-1.cv0mmigaeapf.us-west-1.rds.amazonaws.com:3306/fullstack
+    username: admin
+    password: 13504786
+    url: jdbc:mysql://database-1.cv0mmigaeapf.us-west-1.rds.amazonaws.com:3306/fullstack
+#    jdbc:mysql://localhost:3306/fullstack_development
+
 #
     driver-class-name: com.mysql.cj.jdbc.Driver
 

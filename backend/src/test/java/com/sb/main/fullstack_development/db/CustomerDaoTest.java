@@ -1,6 +1,7 @@
 package com.sb.main.fullstack_development.db;
 
 import com.sb.main.fullstack_development.entities.Customer;
+import com.sb.main.fullstack_development.entities.Gender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,8 @@ class CustomerDaoTest {
                 "khan",
                 "fahad.khan@gmail.com",
                 "03089275702",
-                25
+                25,
+                null
         );
        underTest.saveCustomer(customer);
        Mockito.verify(customerRepository).save(customer);
@@ -71,7 +73,8 @@ class CustomerDaoTest {
                 "khan",
                 "fahad.khan@gmail.com",
                 "03089275702",
-                25
+                25,
+                Gender.MALE
         );
 
         underTest.updateCustomer(customer);

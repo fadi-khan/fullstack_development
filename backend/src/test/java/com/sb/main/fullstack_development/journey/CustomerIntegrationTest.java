@@ -1,6 +1,7 @@
 package com.sb.main.fullstack_development.journey;
 
 import com.sb.main.fullstack_development.entities.Customer;
+import com.sb.main.fullstack_development.entities.Gender;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class CustomerIntegrationTest {
                 "buff",
                 email,
                 "1316163161",
-                99
+                99,
+                null
         );
 
         // inserting or adding a customer
@@ -82,7 +84,8 @@ public class CustomerIntegrationTest {
                 "buff",
                 email,
                 "1316163161",
-                99
+                99,
+                null
         );
 
         // inserting or adding a customer
@@ -134,7 +137,8 @@ public class CustomerIntegrationTest {
                 "updatedLastName",
                 email,
                 "updatedPhoneNumber",
-                99
+                99,
+                null
         );
 
         //updating the customer

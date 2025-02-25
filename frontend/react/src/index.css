@@ -3,17 +3,31 @@
 @tailwind utilities;
 
 body{
-    background: #000300;
+
     user-select: none;
+    background: #000900;
 
 }
 #formLabel{
-    margin-bottom: 4px;
     font-weight: bold;
+    color: white;
+
 
 }
 #formInput{
-    margin-bottom: 16px;
-    padding: 12px;
 
+    border: 1px solid white;
+    padding: 12px;
+    background-color: #000900;
+
+
+}
+#formInput:focus{
+    background-color: #000900;
+}
+#formInput:-webkit-autofill,
+#formInput:-webkit-autofill:hover,
+#formInput:-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #000900 inset;
 }

@@ -19,7 +19,7 @@ const ProfileButton = () => {
     return (
         <>
             {/* Overlay (Click to close) */}
-            {dropDown && (
+            {dropDown && ( 
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50  z-40"
                     onClick={handleOverlayClick} // ✅ Clicking outside closes dropdown
@@ -31,7 +31,7 @@ const ProfileButton = () => {
                     className={"cursor-pointer flex justify-center items-center gap-3 p-3"}
                     onClick={() => setDropDown(!dropDown)} // Toggle dropdown
                 >
-                    <Avatar />
+                    <Avatar rest={"w-8 h-8  md:w-12 md:h-12"} />
                     <ul className={"hidden md:block"}>
                         <li>Justin Bieber</li>
                         <li className={"font-light"}>Admin</li>
