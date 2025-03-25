@@ -15,14 +15,8 @@ export function About() {
             <div className={"flex-1  "} onClick={() => {
                 navigate("/")
             }}> {
-            } This is About Page {formData.customerId} </div>
+            } This is About Page  </div>
 
-                <div>
-                    {
-                        formData.firstName + " " + formData.lastName + " " + formData.email + " " + formData.phone
-                    }
-
-                </div>
 
 
         </div>

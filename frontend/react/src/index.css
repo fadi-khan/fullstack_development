@@ -9,12 +9,24 @@ body{
 
 }
 #formLabel{
-    font-weight: bold;
+    font-weight: lighter;
     color: white;
 
 
 }
 #formInput{
+
+
+    height: 48px;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 4px;
+    background-color: #000900;
+
+
+
+}
+.formInput{
 
     border: 1px solid white;
     padding: 12px;
@@ -25,9 +37,40 @@ body{
 #formInput:focus{
     background-color: #000900;
 }
+
 #formInput:-webkit-autofill,
 #formInput:-webkit-autofill:hover,
 #formInput:-webkit-autofill:focus {
     -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #000900 inset;
 }
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+
+}
+
+::-webkit-scrollbar-track {
+    background: #001300; /* Dark green track color */
+    border-radius: 6px;
+
+    ;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #004d00; /* Medium green thumb color */
+    border-radius: 6px;
+    border: 3px solid #001300; /* Match track color */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #006600; /* Brighter green on hover */
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #004d00 #001300; /* thumb track */
+}
+

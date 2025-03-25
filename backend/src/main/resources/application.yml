@@ -1,13 +1,21 @@
 #spring.application.name=fullstack_development
-
+#
+#spring:
+#  application:
+#    name: fullstack_development
+#  datasource:
+#    username: admin
+#    password: 13504786
+#    url: jdbc:mysql://database-1.cv0mmigaeapf.us-west-1.rds.amazonaws.com:3306/fullstack
+#    jdbc:mysql://localhost:3306/fullstack_development
 spring:
   application:
     name: fullstack_development
   datasource:
-    username: admin
-    password: 13504786
-    url: jdbc:mysql://database-1.cv0mmigaeapf.us-west-1.rds.amazonaws.com:3306/fullstack
-#    jdbc:mysql://localhost:3306/fullstack_development
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/fullstack_development
+#
 
 #
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,7 +28,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: true
 cors:
   allowed-origins: "*"

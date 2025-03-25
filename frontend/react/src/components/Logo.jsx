@@ -11,7 +11,7 @@ export const Logo = () => {
                 alt="Bordered avatar"
             />
 
-              <div className="z-10 md:text-4xl text-xl  font-bold bg-gradient-to-r from-green-100 to-green-900 bg-clip-text text-transparent">
+              <div className="z-10 md:text-4xl text-xl  font-bold bg-gradient-to-r from-green-400 to-green-900 bg-clip-text text-transparent">
                  <ExampleComponent/>
               </div>
 

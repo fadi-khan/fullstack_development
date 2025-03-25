@@ -1,16 +1,27 @@
 import React, {useState} from "react";
 import {saveCustomer} from "../services/client.jsx";
-import {AiFillIdcard, AiOutlineClose, AiOutlineDown} from "react-icons/ai";
+import PhoneInput from "react-phone-number-input/input";
+import {CountrySelector} from "./CountrySelector.jsx";
+import {FormInput} from "../CustomComponents/FormInput.jsx";
+import {useNavigate} from "react-router-dom";
+import {
+    AiFillCaretDown,
+    AiOutlineArrowLeft, AiOutlineArrowsAlt,
+    AiOutlineBackward, AiOutlineCaretLeft,
+    AiOutlineLeft,
+    AiOutlineStepBackward
+} from "react-icons/ai";
+import {BiArrowBack, BiLeftArrow} from "react-icons/bi";
+import {GiBranchArrow} from "react-icons/gi";
 
 
-export const SaveForm = ({updateCustomerList , formBar,setFormBar}) => {
-    const [customer, setCustomer] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        age: 0
-    });
+
+
+
+
+export const SaveForm = () => {
+    const [customer, setCustomer] = useState({phoneCode: 'PK'});
+
 
 
 
@@ -18,23 +29,38 @@ export const SaveForm = ({updateCustomerList , formBar,setFormBar}) => {
     const [error, setError] = useState(false);
 
     // to set the message based on response
-    const [message, setMessage] = useState("")
+    const [confirmationMessage, setConfirmationMessage] = useState("")
+    const [fieldsErrorMsg, setFieldsErrorMsg] = useState({})
 
     // to handle the change in the text field
     const handleChange = (e) => {
 
         setCustomer({...customer, [e.target.name]: e.target.value});
+        setFieldsErrorMsg({})
+        setConfirmationMessage("")
     }
-    <AiFillIdcard/>
+    const handlePhoneCodeChange = (code) => {
 
 
+        setCustomer({ ...customer, phoneCode: code });
+    };
 
-    const handleAgeChange = (e) => {
+    const handlePhoneNumberChange = (e) => {
+        const phoneNumberValue = e.target.value;
+        const number = phoneNumberValue.replace(/[^0-9]/g,"" );
+        e.target.value = number;
+        setCustomer({ ...customer, phone: number });
+
+
+    }
+
+
+    const handleAgeChange = (e ) => {
         const inputValue = e.target.value;
         const numericValue = inputValue.replace(/[^0-9]/g, ""); // Allow only numbers
         e.target.value = numericValue;
         setCustomer({ ...customer, age: numericValue }); // Update customer.age directly
-        console.log(e.target.value.length)
+
     };
 
 
@@ -43,11 +69,21 @@ export const SaveForm = ({updateCustomerList , formBar,setFormBar}) => {
         try {
             setError(false);
             await saveCustomer(customer)
-            setMessage("Customer Added Successfully !");
+            setConfirmationMessage("Customer Added Successfully !");
+            console.log(customer.phoneCode)
+            setFieldsErrorMsg({})
+
+
+
         } catch (error) {
             setError(true);
-            console.log(error);
-            setMessage(error.status);
+            setFieldsErrorMsg(error);
+
+             setConfirmationMessage(error.message);
+
+
+
+
         }
     }
 
@@ -57,149 +93,130 @@ export const SaveForm = ({updateCustomerList , formBar,setFormBar}) => {
     return (
 
 
-        <>
-            <div>
-                {
+            <div
+                className={` w-full bg-[#000900]  mt-4   `}>
 
-                    formBar && (
-                        <div
-                            onClick={() => {
-                                setFormBar(false);
-                                updateCustomerList();
-                            }}
-                            className={"fixed inset-0 z-50 bg-black opacity-50 "}>
+                <div className={"p-4   m-4  border rounded-lg bg-gray-950  border-gray-600 border-opacity-30 shadow-sm shadow-gray-900 xl:w-1/2 "}>
+                    <div className={"px-4 flex  justify-between  "}>
+                        <label className={"font-mono text-2xl font-bold text-green-500"}>Add New Customer</label>
+                        {/*<label onClick={()=>{navigate("/")}}>Go to Home</label>*/}
+                        <a href={"/"}
+                           className={" font-mono border border-opacity-0 border-white hover:border-opacity-50   text-green-500 flex gap-x-1 text-center items-center underline underline-offset-2 hover:border p-1 font-bold  "}>
 
-                        </div>
-                    )
-                }
-            </div>
-
-
-
-
-                <div className={` justify-center items-center border-l  rounded-2xl top-0 fixed ease-in-out duration-500 h-screen   border-green-950 p-4  md:w-[55%] w-[80%]   bg-black  z-50  ${formBar ? "right-0" : "-right-full"} `}>
-
-                    <div className={" flex mx-4 mt-4 justify-between mb-12"}>
-                        <label className={" text-3xl font-bold text-green-800"}>Add Customer</label>
-
-                        <AiOutlineClose
-                            className={"hover:border hover:border-green-800 "}
-                            size={20}
-                            onClick={
-                                () => {
-                                    setFormBar(!formBar);
-                                    updateCustomerList()
-                                }}
-                        />
-
-
+                          <BiArrowBack /> Home
+                        </a>
                     </div>
-                    <h2 className={`${error ? "text-red-600" : "text-green-600"} text-center my-4`}> {message}</h2>
 
-                    <form onSubmit={handleSubmit}
-                          className="gap-y-6 flex flex-col md:grid md:grid-cols-2 max-w-[60%] m-auto md:items-center">
+                    <div className={` flex text-center text-sm pl-4 ${error ? "text-red-600" : "text-green-500"}  select-text   bg-opacity-25 h-6  text-center mt-6`}>
+                        {confirmationMessage}
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="
+                     p-4 pt-0 grid  gap-x-6 gap-y-2 grid-cols-1  md:grid-cols-2     ">
 
 
-                        <label id={"formLabel"} >First Name</label>
-                        <input
+                       <FormInput
+                           inputLabel={"First Name"}
+                           type={"text"}
+                           name={"firstName"}
+                           value={customer.firstName}
+                           onChange={handleChange}
+                           placeholder={"First Name"}
+                           errorMsg={fieldsErrorMsg.firstName}
+
+                       />
+
+                        <FormInput
                             id={"formInput"}
+                            inputLabel={"Last Name"}
                             type={"text"}
-                            className={"  rounded   "}
-                            name={"firstName"}
-                            value={customer.firstName}
-                            onChange={handleChange}
-                            required={true}
-                            placeholder={"First Name"}
-
-                        />
-
-
-                        <label id={"formLabel"}>Last Name </label>
-                        <input
-                            id={"formInput"}
-                            type={"text"}
-                            className={" rounded  "}
                             name={"lastName"}
                             value={customer.lastName}
                             onChange={handleChange}
-                            required={true}
-                            placeholder={"Last Name "}
+                            placeholder={"Last Name"}
+                            errorMsg={fieldsErrorMsg.lastName}
+
                         />
 
-                        <label id={"formLabel"}>Email Address </label>
-                        <input
-                            id={"formInput"}
+                        <FormInput
+                            inputLabel={"Email"}
                             type={"email"}
-                            className={"  rounded   "}
                             name={"email"}
                             value={customer.email}
                             onChange={handleChange}
-                            required={true}
                             placeholder={"Email"}
+                            errorMsg={fieldsErrorMsg.firstName}
+
+
+
                         />
 
+                        <div className={"flex flex-col  gap-y-1  "}>
                         <label id={"formLabel"}>Phone </label>
-                        <input
-                            id={"formInput"}
-                            type={"text"}
-                            className={" rounded    "}
-                            name={"phone"}
-                            value={customer.phone}
-                            onChange={handleChange}
-                            required={true}
-                            placeholder={"Phone"}
-                        />
 
-                        <label id={"formLabel"}>Age </label>
-                        <input
-                            id={"formInput"}
+                            <div className={"flex w-full items-center"}>
+                                <CountrySelector value={customer.phoneCode} onChange={handlePhoneCodeChange}/>
+                                <input
+                                    id={"formInput"}
+                                    type={"text"}
+                                    className={`border-opacity-30 border-white rounded-xl  border `}
+                                    name={"phone"}
+                                    value={customer.phone}
+                                    onChange={handlePhoneNumberChange}
+                                    placeholder={"Phone"}
+                                />
+                            </div>
+
+
+                            <label className={"text-red-600 text-sm h-6 "}>{fieldsErrorMsg.validPhoneNumber} </label>
+                        </div>
+
+                        <FormInput
+                            inputLabel={"Age"}
                             type={"text"}
-                            className={"  border rounded    "}
                             name={"age"}
                             value={customer.age}
-                            onChange={handleChange}
-                            required={true}
+                            onChange={handleAgeChange}
                             placeholder={"Age"}
-                            onInput={handleAgeChange}
+                            errorMsg={fieldsErrorMsg.age}
 
                         />
-                        <label id={""}>Gender</label>
+
+
+                        <div className={"flex flex-col gap-y-1"}>
+                            <label id={"formLabel"}>Gender</label>
 
                             <select
 
-                                className=" bg-[#000900] border py-2 h-12 rounded pr-4"
+                                className=" bg-[#000900] border py-2 h-12 rounded-xl pl-2 pr-4 border-white border-opacity-30"
                                 name="gender"
                                 value={customer.gender}
                                 onChange={handleChange}
                                 required
                             >
 
-                                    <option value="" >Select Gender</option>
-                                    <option value="MALE">Male</option>
-                                    <option value="FEMALE">Female</option>
-                                    <option value="OTHER">Other</option>
+                                <option value="">Select Gender</option>
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                                <option value="OTHER">Other</option>
 
 
                             </select>
-
-
-                        <div>
-
-
+                            <label className={"text-red-600 text-sm h-6 "}>{fieldsErrorMsg.gender} </label>
                         </div>
-                        <div className={" md:flex md:w-auto  md:justify-end mt-10 "}>
-                            <button type="submit"
-                                    className="w-full h-12 bg-green-600 text-white px-4 py-1 rounded font-bold text-lg my-4">
+
+
+                        <button type="submit"
+                                className="md:col-span-2
+                                     mx-28 md:mx-36 h-12 bg-green-500 text-gray-950 text-xl px-4 py-1 rounded-xl font-bold my-12">
                                 Save
                             </button>
-                        </div>
+
 
                     </form>
-
                 </div>
 
-
-        </>
+            </div>
 
 
     )

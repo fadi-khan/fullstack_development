@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 
-const Options = ({customer,setCurrentCustomer ,setUpdateFormBar}) => {
+const Options = ({customer,setCurrentCustomer ,setUpdateFormBar ,setShowDeleteDialogue}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     // Toggle menu visibility
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+        setCurrentCustomer(customer)
     };
 
     // Close dropdown when clicking outside
@@ -27,34 +29,46 @@ const Options = ({customer,setCurrentCustomer ,setUpdateFormBar}) => {
             {/* Three Dots Button */}
             <button
                 onClick={toggleMenu}
-                className=" ring-1  w-5 font-bold rounded-md h-7   shadow-sm  bg-[#000900] bg-opacity-35"
+                className="   w-5 font-bold rounded-full  h-7      text-gray-900 "
 
             >
-                ⋮
+                 ⋮
             </button>
 
             {/* Dropdown Menu */}
             {isOpen && (
                 <div className="absolute right-0 mt-2 w-32  border bg-[#000900] shadow-lg rounded-lg">
                     <button
-                        className="block w-full text-left px-4 py-2 hover:bg-green-600 "
+                        className="block w-full text-left px-4 py-2 hover:bg-green-600 rounded-t-lg "
                         onClick={() =>
                             {
                                 setCurrentCustomer(customer)
                                 setUpdateFormBar(true)
+                                setIsOpen(false)
+
                             }
                     }
                     >
                         ✏️ Edit
                     </button>
-                    <button
-                        className="block w-full text-left px-4 py-2 hover:bg-green-600 text-red-600"
-                        onClick={() => alert("Delete clicked")}
-                    >
-                        🗑️ Delete
-                    </button>
+
+                        <button
+                            className="block w-full text-left px-4 py-2 hover:bg-green-600 rounded-b-lg text-red-600"
+                            onClick={
+                            () => {
+                                setShowDeleteDialogue(true)
+                                setCurrentCustomer(customer)
+                                setIsOpen(false)
+                            }
+                        }
+                        >
+                            🗑️ Delete
+                        </button>
+
+
                 </div>
             )}
+
         </div>
     );
 };

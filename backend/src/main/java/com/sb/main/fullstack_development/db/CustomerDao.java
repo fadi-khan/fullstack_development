@@ -44,7 +44,7 @@ public boolean saveCustomer(Customer customer) {
 
     customer.setFirstName(capitalize(customer.getFirstName()));
     customer.setLastName(capitalize(customer.getLastName()));
-    customer.setEmail(customer.getEmail().toLowerCase());
+    customer.setEmail(customer.getEmail());
     customerRepository.save(customer);
 
     return customerRepository.existsCustomerByCustomerId(customer.getCustomerId());

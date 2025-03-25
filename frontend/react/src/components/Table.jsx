@@ -2,75 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getCustomers} from "../services/client.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import {UpdateForm} from "./UpdateForm.jsx";
-import {SaveForm} from "./SaveForm.jsx";
+
 import {CustomerCard} from "./CustomerCard.jsx";
+import {useNavigate} from "react-router-dom";
+
+import PhoneInput from "react-phone-number-input";
+import {ConfirmationMessage} from "./ConfirmationMessage.jsx";
 
 
 
-export const Table = ({ formBar, setFormBar }) => {
-    const [customers, setCustomers] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
-
-    const [updateForm, setUpdateForm] = useState(false);
-    const [currentCustomer, setCurrentCustomer] = useState({
-
-    });
-
-    const customerData = () => {
-        setLoading(true);
-        getCustomers()
-            .then(res => {
-                if (res.data && res.data.length > 0) {
-                    setCustomers(res.data);
-                }
-            })
-            .catch(err => {
-                console.error("Error getting customers data", err);
-                setError(true);
-            })
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        customerData();
-    }, []);
-
-    if (loading) {
-        return <LoadingSpinner />;
-    }
-
-    return (
-        <div className="overflow-auto rounded">
-            {/* ✅ Button to open the SaveForm */}
-            <button
-                className="font-bold py-2.5 bg-green-700 px-5 rounded mb-12 hover:opacity-80"
-                onClick={() => setFormBar(true)} // ✅ Update formBar state when clicked
-            >
-                Add new customer
-            </button>
-
-
-
-            <CustomerCard
-                customers={customers}
-                setCurrentCustomer={setCurrentCustomer}
-                setUpdateFormBar={setUpdateForm}
-            />
-
-            <UpdateForm
-                updateFormBar={updateForm}
-                setUpdateFormBar={setUpdateForm}
-                currentCustomer={currentCustomer}
-                setCurrentCustomer={setCurrentCustomer}
-                updateCustomersList={customerData}
-            />
-
-            {/* ✅ SaveForm now correctly receives formBar */}
-            <SaveForm updateCustomerList={customerData} formBar={formBar} setFormBar={setFormBar}/>
-        </div>
-    );
-};
 
 //when displaying customer data  as table
 

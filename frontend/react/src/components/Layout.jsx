@@ -1,7 +1,8 @@
 import { useState } from "react";
 import {TopBar} from "./TopBar";
 import {SideBar} from "./SideBar";
-import {Body} from "./Body.jsx";
+import {Home} from "./Home.jsx";
+import {Outlet} from "react-router-dom";
 
 const Layout = () => {
     const [sideBar, setSideBar] = useState(false);
@@ -15,7 +16,7 @@ const Layout = () => {
             {/* Sidebar + MainContent Layout */}
             <div className="flex flex-1">
                 <SideBar  toggleSidebar={sideBar} setToggleSidebar={setSideBar} />
-                <Body formBar={formBar} setFormBar={setFormBar} /> {/* ✅ Pass formBar to Body */}
+                 <Outlet /> {/* ✅ Pass formBar to Home */}
             </div>
         </div>
     );
